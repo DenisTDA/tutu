@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Маршруты</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @railway_routes.each do |railway_route| %>
+      <tr>
+        <td><%= railway_route.name %></td>
+        <td><%= link_to 'Показать', railway_route %></td>
+        <td><%= link_to 'Редактировать', edit_railway_route_path(railway_route) %></td>
+        <td><%= link_to 'Удалить', railway_route, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Создать новый маршрут', new_railway_route_path %>

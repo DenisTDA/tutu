@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название</strong>
+  <%= @railway_route.name %>
+</p>
+
+<%= link_to 'Редактировать', edit_railway_route_path(@railway_route) %> |
+<%= link_to 'Назад', railway_routes_path %>

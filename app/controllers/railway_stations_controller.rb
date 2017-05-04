@@ -50,7 +50,7 @@ class RailwayStationsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /railway_stations/1
   # DELETE /railway_stations/1.json
   def destroy
