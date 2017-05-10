@@ -33,13 +33,12 @@ class PassengersController < ApplicationController
 
   def destroy
     @passenger.destroy
-    redirect_to passengers_path
+    redirect_to passengers_url
   end
 
   private
   def passenger_params
-    params.require(:passenger).permit(:name)
-    params.require(:passenger).permit(:lastname)
+    params.require(:passenger).permit(:name, :lastname)    
   end
 
   def set_passenger
