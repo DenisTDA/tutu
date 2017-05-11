@@ -1,0 +1,26 @@
+<%= form_with(model: carriage, local: true) do |form| %>
+  <%= render 'common/errors',  resource: carriage %>
+
+ <div class="field">
+    <%= form.label :@carriage_id, 'Порядковый номер' %>
+    <%=  carriage.id %>
+  </div>
+
+  <div class="field">
+    <%= form.radio_button(:kind, 'купейный') %>
+    <%= form.label(:kind_of_compartment, "Купейный") %>
+    <%= form.radio_button(:kind, 'плацкартный') %>
+    <%= form.label(:kind_of_reserved, "Плацкарный") %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :train_id, 'Вкличить в поезд' %>
+    <%= form.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "#{@carriage.new_record? ? 'Сохранить' : 'Изменить' }" %>
+  </div>
+
+<% end %>

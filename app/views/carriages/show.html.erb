@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Порядковый номер:</strong>
+  <%= @carriage.id %>
+</p> 
+
+<p>
+  <strong>Тип вагона:</strong>
+  <%= @carriage.kind %>
+</p> 
+
+<p>
+  <strong>Номер поезда:</strong>
+  <%= @carriage.train.number %>
+</p> 
+
+
+<%= link_to 'Редактировать', edit_carriage_path(@carriage) %> 
+<%= link_to 'Назад', carriages_path %>
