@@ -6,6 +6,30 @@
 </p>
 
 <p>
+  <strong> Вагоны </strong>
+  <% if @train.carriages.any? %>
+     <strong> Количество купейных вагонов - </strong>
+    <%= @train.carriages.where(kind:'купейный').size %>
+</p>
+  <p>
+    Количество верхних/нижних мест - 
+    <%= @train.carriages.where(kind: 'купейный').sum("top") %> /
+    <%= @train.carriages.where(kind: 'купейный').sum("bottom") %>
+  </p>
+  <p>
+    <strong> Количество плацкартных вагонов - </strong>
+    <%= @train.carriages.where(kind: 'плацкартный').size %>
+  </p>
+    <p>
+    Количество верхних/нижних мест - 
+    <%= @train.carriages.where(kind: 'плацкартный').sum("top") %> /
+    <%= @train.carriages.where(kind: 'плацкартный').sum("bottom") %>
+  </p>
+  <% else %>
+    Вагоны отсутствуют
+  <% end %>
+
+<p>
   <strong> Маршрут </strong>
   <% if @train.route.present? %>
     <%= @train.route.name %>
@@ -13,5 +37,5 @@
     Маршрут не назначен
   <% end %>
 </p>
-<%= link_to 'Edit', edit_train_path(@train) %> |
+<%= link_to 'Edit', edit_train_path(@train) %> 
 <%= link_to 'Back', trains_path %>
