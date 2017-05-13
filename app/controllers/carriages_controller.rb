@@ -39,7 +39,7 @@ class CarriagesController < ApplicationController
 
   private
   def carriage_params
-    params.require(:carriage).permit(:kind, :train_id)
+    params.require(:carriage).permit(:kind, :train_id, :top, :bottom)
   end
 
   def set_carriage

@@ -12,10 +12,17 @@
     <%= form.radio_button(:kind, 'плацкартный') %>
     <%= form.label(:kind_of_reserved, "Плацкарный") %>
   </div>
-
+  <div class="field">
+    <%= form.label :top, 'Верх. места' %>
+    <%= form.text_field :top, id: :carriag_top %>
+  </div>
+   <div class="field">
+    <%= form.label :bottom, 'Ниж. мета' %>
+    <%= form.text_field :bottom, id: :carriage_bottom %>
+  </div>
 
   <div class="field">
-    <%= form.label :train_id, 'Вкличить в поезд' %>
+    <%= form.label :train_id, 'Включить в поезд' %>
     <%= form.collection_select :train_id, Train.all, :id, :number %>
   </div>
 
