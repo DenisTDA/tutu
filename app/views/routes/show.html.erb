@@ -11,11 +11,14 @@
     <p> Список пуст </p>
   <% else %>
   <ul>
-    <% @route.railway_stations.each do |station| %>
-      <li> <%= station.title %> </li>
-    <% end %>    
-  </ul>
-  <% end %>
+  <% @route.railway_stations_routes.order_stations.each do |railway_station_route| %>
+     <li> <%= railway_station_route.number_order %>  | <%= railway_station_route.railway_station.title %>  </li>
+  <% end %> 
+    </ul>
+
+<% end %>
+
+
 </p>
 
 
