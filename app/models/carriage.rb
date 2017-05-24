@@ -5,20 +5,31 @@ class Carriage < ApplicationRecord
   validates :train_id, presence: true 
   validates :number, uniqueness: { scope: :train_id }
 
-  after_validation :set_number
+  before_validation :set_number
+
+  scope :compart, -> { where(type: 'CompartCarriage') }
+  scope :economy, -> { where(type: 'EconomCarriage') }
+  scope :seats, -> { where(type: 'SeatsCarriage') }
+  scope :sv, -> { where(type: 'SvCarriage') }
+
+  scope :ordered, -> { order(:number) }
+
+  scope :sort_up, -> { order(:number) }
+  scope :sort_down, -> { order(number: :desc) }
   
 
   private
   
   def set_number
-    carriages = Train.find(:train_id).carriages
-    carriages.each{ |carriage| numbers << carriage.number } 
+    numbers ||= []
+    n = self.train_id
+    train.carriages.each{ |carriage| numbers << carriage.number } 
     i = 1
     loop do
-      unless numbers.include?(i)
+      if numbers.include?(i)
         i+=1
       else
-        self.number = i
+        self.number ||= i
         break
       end
     end

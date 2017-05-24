@@ -11,16 +11,20 @@
     <p> Список пуст </p>
   <% else %>
   <ul>
-  <% @route.railway_stations_routes.order_stations.each do |railway_station_route| %>
-     <li> <%= railway_station_route.number_order %>  | <%= railway_station_route.railway_station.title %>  </li>
+    <% @route.railway_stations.order_stations.each do |station| %>
+      <li> 
+      <%= station.title %>  
+      <%= form_tag(update_station_railway_station_path(station), method: "put") do %>
+        <%= label_tag(:number_order, "Порядковый номер в маршруте: ") %>
+        <%= text_field_tag(:position, station.position(@route)) %>
+        <%= hidden_field_tag(:route_id, @route.id) %>
+        <%= submit_tag("Изменить") %>
+      <% end %>
+      </li>
   <% end %> 
-    </ul>
-
+  </ul>
 <% end %>
-
-
 </p>
-
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> 
 <%= link_to 'Назад', routes_path %>

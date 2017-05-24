@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>
-        <td> № </td>
+        <td> № в составе </td>
         <td> | </td>
         <td> тип </td>
         <td> | </td>
@@ -26,9 +26,9 @@
     <% @carriages.each do |carriage| %>
       <tr>
       <th>
-        <td><%= carriage.id %></td>
+        <td><%= carriage.number %></td>
         <td> | </td>
-        <td><%= carriage.kind %></td>
+        <td><%= carriage.type %></td>
         <td> | </td>
         <td><%= carriage.top %></td>
         <td> | </td>
@@ -36,12 +36,11 @@
         <td> | </td>
         <td><%= carriage.train.number %></td>
         <td> | </td>
-        <td><%= link_to 'Показать', carriage %></td>
-        <td><%= link_to 'Редактировать', edit_carriage_path(carriage) %></td>
-        <td><%= link_to 'Удалить', carriage, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-      </th>
+       </th>
       </tr>
+    <%= render partial: 'carriages/carriage', collection: @carriages %>  
     <% end %>
+    
   </tbody>
 </table>
 

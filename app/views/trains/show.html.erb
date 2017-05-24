@@ -1,41 +1,86 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер поезда:</strong>
   <%= @train.number %>
 </p>
 
-<p>
-  <strong> Вагоны </strong>
-  <% if @train.carriages.any? %>
-     <strong> Количество купейных вагонов - </strong>
-    <%= @train.carriages.where(kind:'купейный').size %>
-</p>
-  <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'купейный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'купейный').sum("bottom") %>
-  </p>
-  <p>
-    <strong> Количество плацкартных вагонов - </strong>
-    <%= @train.carriages.where(kind: 'плацкартный').size %>
-  </p>
-    <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'плацкартный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'плацкартный').sum("bottom") %>
-  </p>
-  <% else %>
-    Вагоны отсутствуют
-  <% end %>
+<strong> Маршрут </strong>
+<% if @train.route.present? %>
+  <%= @train.route.name %>
+<% else %>
+  Маршрут не назначен
+<% end %>
 
 <p>
-  <strong> Маршрут </strong>
-  <% if @train.route.present? %>
-    <%= @train.route.name %>
-  <% else %>
-    Маршрут не назначен
-  <% end %>
+  <strong>Количество плацкартных вагонов:</strong>
+  <%= @train.carriages.economy.count %>
+</p>
+
+<p>
+  <strong>Количество купейных вагонов:</strong>
+  <%= @train.carriages.compart.count %>
+</p>
+
+<p>
+  <strong>Количество вагонов СВ:</strong>
+  <%= @train.carriages.sv.count %>
+</p>
+
+<p>
+  <strong>Количество сидячих вагонов:</strong>
+  <%= @train.carriages.seats.count %>
+</p>
+
+<p>
+  <strong>Количество нижних мест в купейных вагонах:</strong>
+  <%= @train.count_seats('CoupeCarriage', 'bottom') %>
+</p>
+
+<p>
+  <strong>Количество верхних мест в купейных вагонах:</strong>
+  <%= @train.count_seats('CoupeCarriage', 'top') %>
+</p>
+
+<p>
+  <strong>Количество нижних мест в плацкартных вагонах:</strong>
+  <%= @train.count_seats('EconomyCarriage', 'bottom') %>
+</p>
+
+<p>
+  <strong>Количество верхних мест в плацкартных вагонах:</strong>
+  <%= @train.count_seats('EconomyCarriage', 'top') %>
+</p>
+
+<p>
+  <strong>Количество боковых нижних мест в плацкартных вагонах:</strong>
+  <%= @train.count_seats('EconomyCarriage', 'side_bottom') %>
+</p>
+
+<p>
+  <strong>Количество боковых верхних мест в плацкартных вагонах:</strong>
+  <%= @train.count_seats('EconomyCarriage', 'side_top') %>
+</p>
+
+<p>
+  <strong>Количество мест в СВ вагонах:</strong>
+  <%= @train.count_seats('LuxeCarriage', 'bottom') %>
+</p>
+
+<p>
+  <strong>Количество мест в сидячих вагонах:</strong>
+  <%= @train.count_seats('SittingCarriage', 'seats_place') %>
+</p>
+
+<p><strong>Вагоны:</strong></p>
+<ul>
+  <%= render partial: 'carriages', collection: @train.sort_carriages %>
+</ul>
+
+<p>
+  <%= link_to 'Добавить вагон', new_train_carriage_path(@train) %>
+</p>
 </p>
 <%= link_to 'Edit', edit_train_path(@train) %> 
 <%= link_to 'Back', trains_path %>
+                                                                      

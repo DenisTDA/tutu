@@ -8,6 +8,14 @@ class Route < ApplicationRecord
 
   before_validation :set_name
 
+  def ordering
+    i = 1
+    self.railway_stations_routes.each do |line| 
+      line.update_attribute(:number_order, i)
+      i+=1
+    end
+  end
+
   private
   def set_name
     self.name = "#{railway_stations.first.title} - #{railway_stations.last.title}"     
