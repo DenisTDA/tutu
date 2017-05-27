@@ -1,0 +1,14 @@
+<% content_for :car do %>
+ <p>
+<%= render 'carriage', carriage: @carriage %>
+  <strong>Мест верхних:</strong>
+  <%= @carriage.top %>
+</p>
+
+<p>
+  <strong>Мест нижних:</strong>
+  <%= @carriage.bottom %>
+</p>
+<% end %>
+
+<%= render 'carriage', carriage: @carriage %>

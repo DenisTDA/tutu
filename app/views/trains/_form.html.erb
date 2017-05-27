@@ -12,6 +12,18 @@
     <%= form.label :route_id %>
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
+<p>
+  <div class="field">
+  <strong>Направление сортировки вагонов</strong>>
+  
+    <%= form.label :direct_sort, 'Прямой' %>
+    <%= form.radio_button :direct_sort, 'true' %>
+  
+    <%= form.label :reverse_sort, 'Обратный' %>
+    <%= form.radio_button :direct_sort, 'false' %>
+   
+  </div>
+ </p>
 
   <div class="actions">
     <%= form.submit "#{ @train.new_record? ? 'Создать' : 'Изменить' }"%>

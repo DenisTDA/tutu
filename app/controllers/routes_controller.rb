@@ -13,6 +13,7 @@ class RoutesController < ApplicationController
 
   def create
     @route = Route.new(route_params)
+    @route.ordering
     if @route.save
       redirect_to @route
     else
@@ -24,7 +25,8 @@ class RoutesController < ApplicationController
   end
 
   def update
-      if @route.update(route_params)
+    @route.ordering
+    if @route.update(route_params)
       redirect_to @route
     else
       render :new

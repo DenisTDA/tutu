@@ -6,4 +6,22 @@ class RailwayStation < ApplicationRecord
   has_many :trains
 
   validates :title, presence: true 
+   scope :order_stations, -> { select('railway_stations.*, railway_stations_routes.number_order').joins(:railway_stations_routes).order('railway_stations_routes.number_order').uniq }
+
+  def update_position(route, position)
+    rsr = railway_stations_routes.where(route: route)
+    rsr.each do | line | 
+      if line.railway_station_id == self.id 
+        line.number_order = position 
+        line.save
+      end
+    end
+  end
+  
+  def position(route)
+    rsr = railway_stations_routes.where(route: route)
+    rsr.each {| line | @position = line.number_order if line.railway_station_id == self.id }
+    @position
+    # station_route(route).try(:position)
+  end
 end

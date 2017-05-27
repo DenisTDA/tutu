@@ -1,41 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер поезда:</strong>
   <%= @train.number %>
 </p>
 
-<p>
-  <strong> Вагоны </strong>
-  <% if @train.carriages.any? %>
-     <strong> Количество купейных вагонов - </strong>
-    <%= @train.carriages.where(kind:'купейный').size %>
-</p>
-  <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'купейный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'купейный').sum("bottom") %>
-  </p>
-  <p>
-    <strong> Количество плацкартных вагонов - </strong>
-    <%= @train.carriages.where(kind: 'плацкартный').size %>
-  </p>
-    <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'плацкартный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'плацкартный').sum("bottom") %>
-  </p>
-  <% else %>
-    Вагоны отсутствуют
-  <% end %>
+<strong> Маршрут </strong>
+<% if @train.route.present? %>
+  <%= @train.route.name %>
+<% else %>
+  Маршрут не назначен
+<% end %>
 
 <p>
-  <strong> Маршрут </strong>
-  <% if @train.route.present? %>
-    <%= @train.route.name %>
-  <% else %>
-    Маршрут не назначен
-  <% end %>
+  <strong> Вагоны </strong>
+    <ul><% @train.sort_carriages.each do |carriage| %> 
+      <li> <%= link_to "#{carriage.number} -- #{carriage.type}", 
+        train_carriage_url(@train, carriage) %></li>
+    <% end %>
+    </ul>
 </p>
-<%= link_to 'Edit', edit_train_path(@train) %> 
+
+<p>
+  <%= link_to 'Добавить вагон', new_train_carriage_path(@train) %>
+</p>
+</p>
+<%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
+                                                                      

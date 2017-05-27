@@ -1,5 +1,6 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy]
+  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, 
+                                              :update_station]
 
   def index
     @railway_stations = RailwayStation.all
@@ -19,7 +20,7 @@ class RailwayStationsController < ApplicationController
     @railway_station = RailwayStation.new(railway_station_params)
 
     if @railway_station.save
-      redirect_to @railway_station, notice: 'Railway station was successfully created.' 
+      redirect_to @railway_station, notice: 'Railway station was successfully created.'
     else
       render :new
     end
@@ -32,10 +33,16 @@ class RailwayStationsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @railway_station.destroy
     redirect_to railway_stations_url, notice: 'Railway station was successfully destroyed.'
+  end
+
+  def update_station
+    @route = Route.find(params[:route_id])
+    @railway_station.update_position(@route, params[:position])
+    redirect_to @route
   end
 
   private
@@ -46,4 +53,5 @@ class RailwayStationsController < ApplicationController
   def railway_station_params
     params.require(:railway_station).permit(:title)
   end
+
 end

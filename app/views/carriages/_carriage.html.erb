@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Номер вагона:</strong>
+  <%= @carriage.number %>
+</p> 
+
+<p>
+  <strong>Тип вагона:</strong>
+  <%= @carriage.type %>
+</p> 
+<%= yield :car%>
+
+<tr>
+  <td><%= link_to 'Назад', train_path(@train) %></td>
+  <td><%= link_to 'Редактировать', edit_train_carriage_url(@carriage.train_id, @carriage) %></td>
+  <td><%= link_to 'Удалить', train_carriage_path(@carriage.train_id,carriage), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+</tr>
