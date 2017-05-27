@@ -18,7 +18,7 @@ class CarriagesController < ApplicationController
   def create
     @carriage = @train.carriages.new(carriage_params)
     if @carriage.save
-      redirect_to @train
+      redirect_to @trainб notice: 'Вагон успешно создан'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class CarriagesController < ApplicationController
 
   def destroy
     @carriage.destroy
-    redirect_to train_url(@train)
+    redirect_to train_url(@train), notice: 'Вагон успешно удален'
   end
 
   private

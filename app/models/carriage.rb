@@ -15,9 +15,7 @@ class Carriage < ApplicationRecord
   scope :sort_up, -> { order(number: :asc) }
   scope :sort_down, -> { order(number: :desc) }
   
-
   private
-  
   def set_number
     numbers ||= []
     n = self.train_id
