@@ -45,6 +45,6 @@
     end
 
      def train_params
-      params.require(:train).permit(:number, :route_id)
+      params.require(:train).permit(:number, :route_id, :direct_sort)
     end
 end

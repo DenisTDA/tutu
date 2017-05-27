@@ -8,13 +8,11 @@ class Carriage < ApplicationRecord
   before_validation :set_number
 
   scope :compart, -> { where(type: 'CompartCarriage') }
-  scope :economy, -> { where(type: 'EconomCarriage') }
+  scope :economy, -> { where(type: 'EconomyCarriage') }
   scope :seats, -> { where(type: 'SeatsCarriage') }
   scope :sv, -> { where(type: 'SvCarriage') }
 
-  scope :ordered, -> { order(:number) }
-
-  scope :sort_up, -> { order(:number) }
+  scope :sort_up, -> { order(number: :asc) }
   scope :sort_down, -> { order(number: :desc) }
   
 

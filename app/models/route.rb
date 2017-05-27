@@ -18,7 +18,7 @@ class Route < ApplicationRecord
 
   private
   def set_name
-    self.name = "#{railway_stations.first.title} - #{railway_stations.last.title}"     
+    self.name ||= "#{railway_stations.first.title} - #{railway_stations.last.title}"     
   end 
 
   def stations_count

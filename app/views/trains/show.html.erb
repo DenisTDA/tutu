@@ -13,74 +13,18 @@
 <% end %>
 
 <p>
-  <strong>Количество плацкартных вагонов:</strong>
-  <%= @train.carriages.economy.count %>
+  <strong> Вагоны </strong>
+    <ul><% @train.sort_carriages.each do |carriage| %> 
+      <li> <%= link_to "#{carriage.number} -- #{carriage.type}", 
+        train_carriage_url(@train, carriage) %></li>
+    <% end %>
+    </ul>
 </p>
-
-<p>
-  <strong>Количество купейных вагонов:</strong>
-  <%= @train.carriages.compart.count %>
-</p>
-
-<p>
-  <strong>Количество вагонов СВ:</strong>
-  <%= @train.carriages.sv.count %>
-</p>
-
-<p>
-  <strong>Количество сидячих вагонов:</strong>
-  <%= @train.carriages.seats.count %>
-</p>
-
-<p>
-  <strong>Количество нижних мест в купейных вагонах:</strong>
-  <%= @train.count_seats('CoupeCarriage', 'bottom') %>
-</p>
-
-<p>
-  <strong>Количество верхних мест в купейных вагонах:</strong>
-  <%= @train.count_seats('CoupeCarriage', 'top') %>
-</p>
-
-<p>
-  <strong>Количество нижних мест в плацкартных вагонах:</strong>
-  <%= @train.count_seats('EconomyCarriage', 'bottom') %>
-</p>
-
-<p>
-  <strong>Количество верхних мест в плацкартных вагонах:</strong>
-  <%= @train.count_seats('EconomyCarriage', 'top') %>
-</p>
-
-<p>
-  <strong>Количество боковых нижних мест в плацкартных вагонах:</strong>
-  <%= @train.count_seats('EconomyCarriage', 'side_bottom') %>
-</p>
-
-<p>
-  <strong>Количество боковых верхних мест в плацкартных вагонах:</strong>
-  <%= @train.count_seats('EconomyCarriage', 'side_top') %>
-</p>
-
-<p>
-  <strong>Количество мест в СВ вагонах:</strong>
-  <%= @train.count_seats('LuxeCarriage', 'bottom') %>
-</p>
-
-<p>
-  <strong>Количество мест в сидячих вагонах:</strong>
-  <%= @train.count_seats('SittingCarriage', 'seats_place') %>
-</p>
-
-<p><strong>Вагоны:</strong></p>
-<ul>
-  <%= render partial: 'carriages', collection: @train.sort_carriages %>
-</ul>
 
 <p>
   <%= link_to 'Добавить вагон', new_train_carriage_path(@train) %>
 </p>
 </p>
-<%= link_to 'Edit', edit_train_path(@train) %> 
+<%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
                                                                       
