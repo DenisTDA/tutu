@@ -11,13 +11,12 @@
     <p> Список пуст </p>
   <% else %>
   <ul>
-    <% @route.railway_stations.each do |station| %>
-      <li> <%= station.title %> </li>
+    <% @route.railway_stations_routes.order_stations.each do |line| %>
+      <li> <%= "#{line.number_order} - #{line.railway_station.title}" %> </li>
     <% end %>    
   </ul>
   <% end %>
 </p>
-
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> 
 <%= link_to 'Назад', routes_path %>

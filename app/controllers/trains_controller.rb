@@ -25,7 +25,6 @@
     end
   end
 
-
   def update
     if @train.update(train_params)
       redirect_to @train, notice: 'Train was successfully updated.'
@@ -45,6 +44,6 @@
     end
 
      def train_params
-      params.require(:train).permit(:number, :route_id)
+      params.require(:train).permit(:number, :route_id, :sort_direct)
     end
 end

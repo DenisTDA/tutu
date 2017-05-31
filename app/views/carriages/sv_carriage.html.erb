@@ -2,28 +2,23 @@
 
 <p>
   <strong>Порядковый номер:</strong>
-  <%= @carriage.id %>
+  <%= @carriage.number %>
 </p> 
 
 <p>
   <strong>Тип вагона:</strong>
-  <%= @carriage.kind %>
+  <%= @carriage.type %>
 </p> 
-<p>
-  <strong>Количество верхних мест:</strong>
-  <%= @carriage.top %>
-</p> 
+
 <p>
   <strong>Количество нижних мест:</strong>
-  <%= @carriage.bottom %>
+  <%= @carriage.bottom_place %>
 </p> 
 
 <p>
   <strong>Номер поезда:</strong>
   <%= @carriage.train.number %>
 </p> 
-
-
 
 <%= link_to 'Редактировать', edit_carriage_path(@carriage) %> 
 <%= link_to 'Назад', carriages_path %>
