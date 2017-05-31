@@ -1,5 +1,5 @@
 class PassengersController < ApplicationController
-  before_action :set_passenger, only: [:show, :edit, :update, :destroy]
+  before_action :set_passenger, only: %i[show edit update destroy]
   def index
     @passengers = Passenger.all
   end
@@ -8,7 +8,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.new
   end
 
-  def show    
+  def show
   end
 
   def create
@@ -24,7 +24,7 @@ class PassengersController < ApplicationController
   end
 
   def update
-      if @passenger.update(passenger_params)
+    if @passenger.update(passenger_params)
       redirect_to @passenger
     else
       render :new
@@ -37,12 +37,12 @@ class PassengersController < ApplicationController
   end
 
   private
+
   def passenger_params
-    params.require(:passenger).permit(:name, :lastname)    
+    params.require(:passenger).permit(:name, :lastname)
   end
 
   def set_passenger
     @passenger = Passenger.find(params[:id])
   end
-
 end

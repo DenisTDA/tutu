@@ -23,7 +23,7 @@
   </thead>
 
   <tbody>
-    <% @carriages.each do |carriage| %>
+    <% @carriages.order(:train_id).each do |carriage| %>
       <tr>
       <th>
         <% carriage = carriage.becomes(Carriage)%>

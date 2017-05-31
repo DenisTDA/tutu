@@ -1,8 +1,8 @@
 class Carriage < ApplicationRecord
   belongs_to :train, optional: true
 
-  validates :train_id, presence: true 
-  validates :number, uniqueness: {scope: :train_id}
+  validates :train_id, presence: true
+  validates :number, uniqueness: { scope: :train_id }
 
   before_validation :set_number
 
@@ -12,18 +12,12 @@ class Carriage < ApplicationRecord
   scope :economy, -> { where(type: 'EconomyCarriage') }
 
   private
+
   def set_number
     numbers = []
-    train.carriages.each{ |car| numbers << car.number}
+    numbers = train.carriages.pluck(:number)
     i = 1
-    loop do
-      unless numbers.include?(i)
-        self.number = i
-        break
-      else
-        i+=1
-      end
-    end
+    i += 1 while numbers.include?(i)
+    self.number = i
   end
-
 end

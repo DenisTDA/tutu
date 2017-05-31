@@ -4,10 +4,10 @@ class Train < ApplicationRecord
   has_many :tickets
   has_many :carriages
 
-  validates :number, presence: true 
+  validates :number, presence: true
 
   def order_car
-    self.sort_direct ? carriages.order(number: :asc) : carriages.order(number: :desc)
+    sort_direct ? carriages.order(number: :asc) : carriages.order(number: :desc)
   end
 
   def count_places(car_type, place_type)
