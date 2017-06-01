@@ -23,16 +23,17 @@
   </thead>
 
   <tbody>
-    <% @carriages.each do |carriage| %>
+    <% @carriages.order(:train_id).each do |carriage| %>
       <tr>
       <th>
-        <td><%= carriage.id %></td>
+        <% carriage = carriage.becomes(Carriage)%>
+        <td><%= carriage.number %></td>
         <td> | </td>
-        <td><%= carriage.kind %></td>
+        <td><%= carriage.type %></td>
         <td> | </td>
-        <td><%= carriage.top %></td>
+        <td><%= carriage.top_place %></td>
         <td> | </td>
-        <td><%= carriage.bottom %></td>
+        <td><%= carriage.bottom_place %></td>
         <td> | </td>
         <td><%= carriage.train.number %></td>
         <td> | </td>

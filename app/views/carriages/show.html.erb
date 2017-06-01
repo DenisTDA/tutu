@@ -1,29 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Порядковый номер:</strong>
-  <%= @carriage.id %>
+  <strong>Номер вагона:</strong>
+  <%= @carriage.number %>
 </p> 
-
-<p>
-  <strong>Тип вагона:</strong>
-  <%= @carriage.kind %>
-</p> 
-<p>
-  <strong>Количество верхних мест:</strong>
-  <%= @carriage.top %>
-</p> 
-<p>
-  <strong>Количество нижних мест:</strong>
-  <%= @carriage.bottom %>
-</p> 
-
 <p>
   <strong>Номер поезда:</strong>
   <%= @carriage.train.number %>
 </p> 
+<p>
+  <strong>Тип вагона:</strong>
+  <%= @carriage.type %>
+</p> 
 
-
+<p>
+  <%= render "#{@carriage.type.underscore.to_s}"%>
+</p>
 
 <%= link_to 'Редактировать', edit_carriage_path(@carriage) %> 
 <%= link_to 'Назад', carriages_path %>

@@ -7,28 +7,17 @@
 
 <p>
   <strong> Вагоны </strong>
+  <ul>
   <% if @train.carriages.any? %>
-     <strong> Количество купейных вагонов - </strong>
-    <%= @train.carriages.where(kind:'купейный').size %>
-</p>
-  <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'купейный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'купейный').sum("bottom") %>
-  </p>
-  <p>
-    <strong> Количество плацкартных вагонов - </strong>
-    <%= @train.carriages.where(kind: 'плацкартный').size %>
-  </p>
-    <p>
-    Количество верхних/нижних мест - 
-    <%= @train.carriages.where(kind: 'плацкартный').sum("top") %> /
-    <%= @train.carriages.where(kind: 'плацкартный').sum("bottom") %>
-  </p>
-  <% else %>
+     <% @train.order_car.each do |carriage| %>
+       <li> <%= link_to "#{carriage.number} - #{carriage.type}", carriage_path(carriage) %></li>
+     <%end%>
+
+ <% else %>
     Вагоны отсутствуют
   <% end %>
-
+</ul>
+</p>
 <p>
   <strong> Маршрут </strong>
   <% if @train.route.present? %>
