@@ -6,6 +6,12 @@ class Train < ApplicationRecord
 
   validates :number, presence: true
 
+  scope :station_in_route, ->(station) { joins(route: :railway_stations).where(railway_stations: {id: station}) }
+
+  def self.search(start_station, end_station)
+    Train.station_in_route(start_station) & Train.station_in_route(end_station)
+  end
+
   def order_car
     sort_direct ? carriages.order(number: :asc) : carriages.order(number: :desc)
   end
@@ -13,4 +19,5 @@ class Train < ApplicationRecord
   def count_places(car_type, place_type)
     carriages.where(type: car_type).sum(place_type)
   end
+
 end

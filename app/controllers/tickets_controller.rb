@@ -37,7 +37,6 @@ class TicketsController < ApplicationController
   end
 
   private
-
   def ticket_params
     params.require(:ticket).permit(:number)
   end

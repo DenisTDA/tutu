@@ -1,0 +1,29 @@
+<h1>Оформление билета</h1>
+
+<%= form_for(@ticket) do |f| %>
+  <%= render 'common/errors', resource: @ticket %>
+
+  <div class="field">
+    <%= f.label :passenger_name, 'Введите имя' %>
+    <%= f.text_field  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :passenger_lastname, 'Введите фамилию' %>
+    <%= f.text_field  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :document_number, 'Номер паспорта' %>
+    <%= f.text_field :document_number %>
+  </div>
+
+  <%= f.hidden_field :train_id, value: params[:train_id] %>
+  <%= f.hidden_field :start_station_id, value: params[:start_station_id] %>
+  <%= f.hidden_field :end_station_id, value: params[:end_station_id] %>
+
+  <div class="actions">
+    <%= f.submit "Купить" %>
+  </div>
+
+<% end %>
