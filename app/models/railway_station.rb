@@ -19,8 +19,14 @@ class RailwayStation < ApplicationRecord
     station_route(route).try(:number_order)
   end
 
+  def update_time(route, arrival, departure)
+    station_route = station_route(route)
+    station_route.update(arrive_time: arrival, departure_time: departure) if station_route
+  end
+
   def time_event(route, time)
-    station_route(route).try(time).strftime("%H:%M")
+    time_event = station_route(route).try(time)
+    time_event.strftime("%H:%M") if time_event
   end
 
   protected

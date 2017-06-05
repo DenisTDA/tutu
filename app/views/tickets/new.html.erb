@@ -4,23 +4,19 @@
   <%= render 'common/errors', resource: @ticket %>
 
   <div class="field">
-    <%= f.label :passenger_name, 'Введите имя' %>
-    <%= f.text_field  %>
+    <%= f.label :passenger_name, 'Введите Фамилию Имя (Отчество)' %>
+    <%= f.text_field :passenger_name %>
   </div>
 
   <div class="field">
-    <%= f.label :passenger_lastname, 'Введите фамилию' %>
-    <%= f.text_field  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :document_number, 'Номер паспорта' %>
-    <%= f.text_field :document_number %>
+    <%= f.label :passport_number, 'Паспорта' %>
+    <%= f.text_field :passport %>
   </div>
 
   <%= f.hidden_field :train_id, value: params[:train_id] %>
   <%= f.hidden_field :start_station_id, value: params[:start_station_id] %>
   <%= f.hidden_field :end_station_id, value: params[:end_station_id] %>
+  <%= f.hidden_field :user_id, value: '1' %>
 
   <div class="actions">
     <%= f.submit "Купить" %>

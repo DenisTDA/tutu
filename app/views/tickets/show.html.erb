@@ -1,9 +1,10 @@
 <h1> Билет </h1>
 <p> Номер билета: <%= @ticket.number %></p>
-<p> Пассажир: <%= "#{@ticket.user_lastname} #{@ticket.user_name}"%></p>
+<p> Пассажир: <%= @ticket.passenger_name%></p>
+<p> Номер паспорта: <%= @ticket.passport%> </p>
 <p> Поезд: <%= @ticket.train.number %> </p>
 <p> Отправление: <%= "#{@ticket.start_station.title} - #{@ticket.start_station.time_event(@ticket.train.route, :departure_time)}" %></p>
 <p> Прибытие: <%= "#{@ticket.end_station.title} - #{@ticket.end_station.time_event(@ticket.train.route, :arrival_time)}" %></p>
+<p> <%= link_to 'Назад', search_url %></p>
 
-<p> ФИО: <%= @ticket.user_name %> </p>
-<p> Номер паспорта: <%= @ticket.passport_number%> </p>
+
