@@ -10,6 +10,6 @@ class Ticket < ApplicationRecord
 
   private
   def set_number
-    self.number = "Ekb-66-00-#{self.id}"
+    Ticket.last ? self.number = "Ekb-66-00-#{Ticket.last.id + 1}" : self.number = '1'
   end
 end
