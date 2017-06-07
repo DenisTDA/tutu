@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Имя</strong>
+  <%= @user.name %>
+  <strong>Фамилия</strong>
+  <%= @user.lastname %>
+
+</p>
+
+<%= link_to 'Редактировать', edit_user_path(@user) %> 
+<%= link_to 'Назад', users_path %>

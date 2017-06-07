@@ -26,5 +26,9 @@
     Маршрут не назначен
   <% end %>
 </p>
+<p> 
+  <%= link_to "Добавить вагон", new_train_carriage_path(@train) %>
+</p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> 
 <%= link_to 'Back', trains_path %>
