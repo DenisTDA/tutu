@@ -1,4 +1,4 @@
-class RoutesController < ApplicationController
+class Admin::RoutesController < Admin::BaseController
   before_action :set_route, only: %i[show edit update destroy]
   def index
     @routes = Route.all
