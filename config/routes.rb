@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+  
   resources :trains do
     resources :carriages, shallow: true 
   end
@@ -11,5 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :tickets
   resource :search, only: [:create, :show, :edit] 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get 'tutu/index'
+  root 'tutu#index'
+   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
