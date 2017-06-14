@@ -1,7 +1,15 @@
-<h1>Оформление билета</h1>
+<%= form_for ticket do |f| %>
+  <%= render 'common/errors', resource: ticket %>
 
-<%= form_for(@ticket) do |f| %>
-  <%= render 'common/errors', resource: @ticket %>
+  <div class="field">
+    <%= f.label :user_id, 'Имя пользователя' %>
+    <%= f.collection_select :user_id, User.all, :id, :lastname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number %>
+    <%= f.text_field :number, id: :ticket_number %>
+  </div>
 
   <div class="field">
     <%= f.label :passenger_name, 'Введите Фамилию Имя (Отчество)' %>
@@ -18,7 +26,7 @@
   <%= f.hidden_field :end_station_id, value: params[:end_station_id] %>
   
   <div class="actions">
-    <%= f.submit "Купить" %>
+    <%= f.submit "#{ticket.new_record? ? 'Сохранить' : 'Изменить' }" %>
   </div>
-
 <% end %>
+

@@ -1,9 +1,8 @@
-class TicketsController < ApplicationController
+class Admin::TicketsController < Admin::BaseController
   before_action :authenticate_user!, only: [:create, :update, :index]
-  before_action :redirect_to_admin, only: [:index]
-  before_action :set_ticket, only: %i[ show edit ]
+  before_action :set_ticket, only: [ :show, :destroy, :edit, :update ]
   def index
-    @tickets = current_user.tickets.all
+    @tickets = Ticket.all
   end
 
   def new
@@ -14,7 +13,7 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = current_user.tickets.new(ticket_params)
+    @ticket = Ticket.new(ticket_params)
     if @ticket.save
       redirect_to @ticket
     else
@@ -46,9 +45,5 @@ class TicketsController < ApplicationController
 
   def set_ticket
     @ticket = Ticket.find(params[:id])
-  end
-
-  def redirect_to_admin
-    redirect_to admin_tickets_url if current_user.admin?    
   end
 end

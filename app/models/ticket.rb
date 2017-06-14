@@ -6,7 +6,7 @@ class Ticket < ApplicationRecord
 
   validates :number, uniqueness: true 
 
-  before_validation :set_number
+  before_validation :set_number, if: :need_set_number?
 
   private
   def set_number

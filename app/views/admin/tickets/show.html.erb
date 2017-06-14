@@ -7,6 +7,5 @@
 <p> Прибытие: <%= "#{@ticket.end_station.title} - #{@ticket.end_station.time_event(@ticket.train.route, :arrive_time)}" %></p>
 
 <p> Билет купил: <%= @ticket.user.email %></p>
-<p> <%= link_to 'Назад', tickets_url %></p>
-
+<p> <%= link_to 'Назад', admin_tickets_url %></p>
 
