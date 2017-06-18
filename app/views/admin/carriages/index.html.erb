@@ -37,9 +37,9 @@
         <td> | </td>
         <td><%= carriage.train.number %></td>
         <td> | </td>
-        <td><%= link_to 'Показать', carriage %></td>
-        <td><%= link_to 'Редактировать', edit_carriage_path(carriage) %></td>
-        <td><%= link_to 'Удалить', carriage, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <td><%= link_to 'Показать', [:admin, carriage] %></td>
+        <td><%= link_to 'Редактировать', edit_admin_carriage_path(carriage) %></td>
+        <td><%= link_to 'Удалить', [:admin, carriage], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </th>
       </tr>
     <% end %>
@@ -48,4 +48,4 @@
 
 <br>
 
-<%= link_to 'Создать новый вагон', new_carriage_path %>
+<%= link_to 'Создать новый вагон', new_admin_carriage_path %>

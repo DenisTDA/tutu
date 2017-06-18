@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  
+  scope "/admin" do
+    resources :users
+  end
  
   resources :tickets
   resource :search, only: [:create, :show, :edit] 
@@ -19,8 +21,8 @@ Rails.application.routes.draw do
     resources :routes
     resources :users
     resources :tickets
+    resources :lists, only: [:index]
   end 
-
   get 'tutu/index'
   root 'tutu#index'
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

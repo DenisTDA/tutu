@@ -6,4 +6,11 @@ class Admin::BaseController < ApplicationController
   def check_admin
     redirect_to root_path, alert: 'У Вас нет прав на просмотр этой страницы' unless current_user.admin?
   end 
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:name, :lastname, :email, :password, :password_confirmation)
+    end
+  end
+
 end
