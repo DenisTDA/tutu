@@ -1,5 +1,9 @@
 <%= form_for [:admin, ticket] do |f| %>
   <%= render 'common/errors', resource: ticket %>
+  <div class="field">
+    <%= f.hidden_field :number, value: ticket.number %>
+    <%= "Номер билета : #{@ticket.number}" %>
+  </div>
 
   <div class="field">
     <%= f.label :user_id, 'Имя пользователя' %>
@@ -7,39 +11,33 @@
   </div>
 
   <div class="field">
-    <%= f.label :number, 'Номер билета' %>
-    <%= f.text_field :number, id: :ticket_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :passenger_name, 'Фамилия Имя (Отчество)' %>
+    <%= f.label :passenger_name, 'Введите Фамилию Имя (Отчество)' %>
     <%= f.text_field :passenger_name %>
   </div>
 
   <div class="field">
-    <%= f.label :passport_number, 'Паспорт' %>
+    <%= f.label :passport_number, 'Паспорта' %>
     <%= f.text_field :passport %>
   </div>
 
   <div class="field">
-    <%= f.label :start_station, 'Начальная станция' %>
-    <td><%= collection_select :stations, :start_station_id, RailwayStation.all, :id, :title %> </td>
+    <%= f.hidden_field :train_id, value: @train.id %>
+    <%= "Поезд : #{ @train.number }" %>
   </div>
 
   <div class="field">
-    <%= f.label :end_station, 'Конечная станция' %>
-    <td> <%= collection_select :stations, :end_station_id, RailwayStation.all, :id, :title %> </td>
+    <%= f.hidden_field :start_station_id, value: @start_station.id %>
+    <%= "Начальная станция : #{@start_station.title}" %>
   </div>
 
   <div class="field">
-    <%= f.label :train, 'Поезд' %>
-    <td> <%= collection_select :trains, :train_id, Train.all, :id, :number %> </td>
-  </div>
+    <%= f.hidden_field :end_station_id, value: @end_station.id %>
+    <%= "Конечная станция : #{@end_station.title}" %>
+  </div>  
 
-  
-  
   <div class="actions">
-    <%= f.submit "#{ticket.new_record? ? 'Сохранить' : 'Изменить' }" %>
+    <%= f.submit  "#{ @ticket.new_record? ? 'Оформить' : 'Изменить' }" %>
   </div>
+
 <% end %>
 

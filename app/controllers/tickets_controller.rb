@@ -1,6 +1,5 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :index]
-  before_action :redirect_to_admin, only: [:index]
   before_action :set_ticket, only: %i[ show edit ]
   def index
     @tickets = current_user.tickets.all

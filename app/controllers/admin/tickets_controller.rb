@@ -1,12 +1,16 @@
 class Admin::TicketsController < Admin::BaseController
-  before_action :authenticate_user!, only: [:create, :update, :index]
   before_action :set_ticket, only: [ :show, :destroy, :edit, :update ]
+  before_action :set_environ, only: [:update, :edit] 
+
   def index
     @tickets = Ticket.all
   end
 
   def new
     @ticket = Ticket.new
+    @train = Train.find(params[:train_id])
+    @end_station = RailwayStation.find(params[:end_station_id])
+    @start_station = RailwayStation.find(params[:start_station_id])
   end
 
   def show
@@ -15,7 +19,7 @@ class Admin::TicketsController < Admin::BaseController
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
-      redirect_to @ticket
+      redirect_to [:admin, @ticket]
     else
       render :new
     end
@@ -26,7 +30,7 @@ class Admin::TicketsController < Admin::BaseController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket
+      redirect_to [:admin, @ticket]
     else
       render :new
     end
@@ -34,7 +38,7 @@ class Admin::TicketsController < Admin::BaseController
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_url
+    redirect_to admin_tickets_url
   end
 
   private
@@ -45,5 +49,11 @@ class Admin::TicketsController < Admin::BaseController
 
   def set_ticket
     @ticket = Ticket.find(params[:id])
+  end
+
+  def set_environ
+    @train = Train.find(@ticket.train_id)
+    @end_station = RailwayStation.find(@ticket.end_station_id)
+    @start_station = RailwayStation.find(@ticket.start_station_id)
   end
 end
