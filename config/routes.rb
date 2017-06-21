@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     resources :routes
     resources :users
     resources :tickets
-    resources :lists, only: [:index]
+    resource :dashboard, only: [:show]
   end 
-  get 'tutu/index'
-  root 'tutu#index'
+  get 'searches/show'
+  root 'searches#show'
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

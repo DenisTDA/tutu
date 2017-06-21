@@ -10,10 +10,10 @@ class Ticket < ApplicationRecord
 
   private
   def need_set_number?
-    number.nil? || Ticket.pluck(:number).count(number) > 1 || number == ''
+    number.blank? || Ticket.where(number: number).count > 1 
   end
 
   def set_number
-    Ticket.last ? self.number = "Ekb-66-01-#{Ticket.last.id + 1}" : self.number = '1'
+    self.number = "Ekb-66-01-#{Ticket.maximum(:id).to_i + 1}"
   end
 end

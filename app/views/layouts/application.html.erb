@@ -15,6 +15,7 @@
     <% if user_signed_in? %>
       <%= link_to "Выйти", destroy_user_session_path, method: :delete%>
       <p> Аккаунт: <%= current_user.email %></p>
+      <p> Преветствуем Вас, <%= "#{current_user.lastname} #{current_user.name}" %></p>
     <% else %>
       <%= link_to "Войти", new_user_session_path%>
     <% end %>

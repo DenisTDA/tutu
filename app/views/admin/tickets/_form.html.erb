@@ -1,7 +1,6 @@
 <%= form_for [:admin, ticket] do |f| %>
   <%= render 'common/errors', resource: ticket %>
   <div class="field">
-    <%= f.hidden_field :number, value: ticket.number %>
     <%= "Номер билета : #{@ticket.number}" %>
   </div>
 

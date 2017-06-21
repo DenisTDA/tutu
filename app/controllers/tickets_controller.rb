@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :index]
-  before_action :set_ticket, only: %i[ show edit ]
+  before_action :authenticate_user!, only: [:create, :index]
+  before_action :set_ticket, only: %i[ show destroy ]
   def index
     @tickets = current_user.tickets.all
   end
@@ -21,17 +21,6 @@ class TicketsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @ticket.update(ticket_params)
-      redirect_to @ticket
-    else
-      render :new
-    end
-  end
-
   def destroy
     @ticket.destroy
     redirect_to tickets_url
@@ -39,12 +28,12 @@ class TicketsController < ApplicationController
 
   private
   def ticket_params
-    params.require(:ticket).permit(:number, :passport, :passenger_name, :user_id, 
-                                  :train_id, :start_station_id, :end_station_id )
+    params.require(:ticket).permit(:number, :passport, :train_id, 
+      :passenger_name, :start_station_id, :end_station_id )
   end
 
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
   end
 
   def redirect_to_admin
