@@ -1,0 +1,20 @@
+<strong>Index user tickets</strong>
+
+<h1>Билеты</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td> Номер </td>
+      <td colspan="3"></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @tickets %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Назад', search_path %>

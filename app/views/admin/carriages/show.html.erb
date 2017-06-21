@@ -1,0 +1,20 @@
+
+<p>
+  <strong>Номер вагона:</strong>
+  <%= @carriage.number %>
+</p> 
+<p>
+  <strong>Номер поезда:</strong>
+  <%= @carriage.train.number %>
+</p> 
+<p>
+  <strong>Тип вагона:</strong>
+  <%= @carriage.type %>
+</p> 
+
+<p>
+  <%= render "#{@carriage.type.underscore.to_s}"%>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_carriage_path(@carriage) %> 
+<%= link_to 'Назад', admin_carriage_path(@carriage.train)%>

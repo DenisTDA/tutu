@@ -1,0 +1,41 @@
+<%= form_for [:admin, @train, @carriage] do |form| %>
+  <%= render 'common/errors',  resource: @carriage %>
+
+ <div class="field">
+    <%= form.label :@carriage_number, 'Порядковый номер' %>
+    <%=  carriage.number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select :type, [ ['СВ', 'SvCarriage'], ['Купейный', 'CupeCarriage'],
+      ['Плацкарный','EconomyCarriage'], ['Сидячие места', 'SeatsCarriage'] ]%>
+  </div>
+
+  
+  <div class="field">
+    <%= form.label :top_place, 'Верх. места' %>
+    <%= form.number_field :top_place %>
+  </div>
+   <div class="field">
+    <%= form.label :bottom_place, 'Ниж. места' %>
+    <%= form.number_field :bottom_place %>
+  </div>
+   <div class="field">
+    <%= form.label :side_top_place, 'Верх. боковые места' %>
+    <%= form.number_field :side_top_place %>
+  </div>
+  <div class="field">
+    <%= form.label :side_bottom_place, 'Ниж. боковые места' %>
+    <%= form.number_field :side_bottom_place %>
+  </div>
+   <div class="field">
+    <%= form.label :seats_place, 'Сид. места' %>
+    <%= form.number_field :seats_place %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "#{@carriage.new_record? ? 'Создать' : 'Изменить' }" %>
+  </div>
+
+<% end %>
