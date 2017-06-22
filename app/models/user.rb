@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :tickets
 
-  # validates :name, presence: true
-  # validates :lastname, presence: true
+  validates :name, presence: true
+  validates :lastname, presence: true
 end
