@@ -6,10 +6,14 @@ class Ticket < ApplicationRecord
 
   validates :number, uniqueness: true 
 
-  before_validation :set_number
+  before_validation :set_number, if: :need_set_number? 
 
   private
+  def need_set_number?
+    number.blank? || Ticket.where(number: number).count > 1 
+  end
+
   def set_number
-    Ticket.last ? self.number = "Ekb-66-00-#{Ticket.last.id + 1}" : self.number = '1'
+    self.number = "Ekb-66-01-#{Ticket.maximum(:id).to_i + 1}"
   end
 end

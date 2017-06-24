@@ -1,0 +1,42 @@
+<%= form_for [:admin, ticket] do |f| %>
+  <%= render 'common/errors', resource: ticket %>
+  <div class="field">
+    <%= "Номер билета : #{@ticket.number}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id, 'Имя пользователя' %>
+    <%= f.collection_select :user_id, User.all, :id, :lastname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :passenger_name, 'Введите Фамилию Имя (Отчество)' %>
+    <%= f.text_field :passenger_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :passport_number, 'Паспорта' %>
+    <%= f.text_field :passport %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :train_id, value: @train.id %>
+    <%= "Поезд : #{ @train.number }" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :start_station_id, value: @start_station.id %>
+    <%= "Начальная станция : #{@start_station.title}" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :end_station_id, value: @end_station.id %>
+    <%= "Конечная станция : #{@end_station.title}" %>
+  </div>  
+
+  <div class="actions">
+    <%= f.submit  "#{ @ticket.new_record? ? 'Оформить' : 'Изменить' }" %>
+  </div>
+
+<% end %>
+

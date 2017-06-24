@@ -1,0 +1,27 @@
+<strong>Index admin tickets</strong>
+
+<h1>Билеты</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Номер</td>
+      <td colspan="3"></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.number %></td>
+        <td><%= link_to 'Показать', edit_admin_ticket_path(ticket) %></td>
+        <td><%= link_to 'Редактировать', edit_admin_ticket_path(ticket) %></td>
+        <td><%= link_to 'Удалить', edit_admin_ticket_path(ticket), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Создать новый билет', search_path %> |
+<%= link_to 'Управление ресурсами', admin_dashboard_path %>
