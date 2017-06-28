@@ -1,0 +1,23 @@
+ru:
+  common:
+    back: 'Назад'
+    errors: 'При заполнении формы возникли ошибки'
+    show: 'Показать'
+    edit: 'Редактировать'
+    destroy: 'Удалить'
+    confirm: 'Вы уверены?'
+  admin:
+    railway_stations:
+      new:
+        title: 'Новая станция'
+      form:
+        title: 'Название'
+      index:
+        stations: 'Железнодорожные станции'
+        title: 'Название'
+        new_station: 'Создать станцию'
+        control: 'Управление ресурсами'
+      show: 
+        title: 'Название'
+      edit:
+        title: 'Редактирование станции'

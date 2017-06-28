@@ -11,9 +11,18 @@
     </thead>
     <tbody>
       <tr>
-      <td><%= collection_select :stations, :start_station_id, RailwayStation.all, :id, :title %> </td>
+      <td>
+        <div class="col-md-4">
+          <%= collection_select :stations, :start_station_id, RailwayStation.all, :id, :title %> 
+        </div>
+      </td>
       <td width =  "50px">
-      <td> <%= collection_select :stations, :end_station_id, RailwayStation.all, :id, :title %> </td>
+
+      <td> 
+        <div class="col-md-4">
+          <%= collection_select :stations, :end_station_id, RailwayStation.all, :id, :title %>
+        </div>
+      </td>
       </tr>
     </tbody>
   </table>
