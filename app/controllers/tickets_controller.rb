@@ -1,6 +1,5 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :redirect_to_admin 
   before_action :set_ticket, only: %i[ show destroy ]
   def index
     @tickets = current_user.tickets.all
@@ -35,9 +34,5 @@ class TicketsController < ApplicationController
 
   def set_ticket
     @ticket = current_user.tickets.find(params[:id])
-  end
-
-  def redirect_to_admin
-    redirect_to admin_tickets_url if current_user.admin?    
   end
 end
