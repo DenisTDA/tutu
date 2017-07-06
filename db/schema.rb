@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608190145) do
+ActiveRecord::Schema.define(version: 20170706132405) do
 
   create_table "carriages", force: :cascade do |t|
     t.integer "train_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170608190145) do
     t.integer "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["id", "type"], name: "index_carriages_on_id_and_type"
     t.index ["train_id"], name: "index_carriages_on_train_id"
   end
 
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170608190145) do
     t.integer "number_order"
     t.datetime "arrive_time"
     t.datetime "departure_time"
+    t.index ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
+    t.index ["route_id"], name: "index_railway_stations_routes_on_route_id"
   end
 
   create_table "routes", force: :cascade do |t|

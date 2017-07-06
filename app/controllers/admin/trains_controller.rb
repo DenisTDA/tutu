@@ -6,6 +6,7 @@ class Admin::TrainsController < Admin::BaseController
   end
 
   def show
+    @train.check_current_station
   end
 
   def new
@@ -17,6 +18,7 @@ class Admin::TrainsController < Admin::BaseController
 
   def create
     @train = Train.new(train_params)
+    @train.current_station = @train.route.railway_stations.first
     if @train.save
       redirect_to [:admin, @train], notice: 'Train was successfully created.'
     else

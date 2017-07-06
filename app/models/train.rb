@@ -22,4 +22,9 @@ class Train < ApplicationRecord
     carriages.where(type: car_type).sum(place_type)
   end
 
+  def check_current_station
+    self.current_station ||= self.route.railway_stations.first
+    self.save
+  end
+
 end
