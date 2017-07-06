@@ -4,10 +4,20 @@ class Ticket < ApplicationRecord
   belongs_to :train
   belongs_to :user
 
+  after_create :send_notification
+
   validates :number, uniqueness: true 
 
   before_validation :set_number, if: :need_set_number? 
 
+  def route_name
+    "#{start_station.title} - #{end_station.title}"
+  end
+
+  def send_notification
+    TicketsMailer.buy_ticket(self.user, self).deliver_now
+  end
+  
   private
   def need_set_number?
     number.blank? || Ticket.where(number: number).count > 1 
