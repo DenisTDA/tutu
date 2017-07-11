@@ -4,21 +4,48 @@
   <%= @train.number %>
 </p>
 <p>
-  <strong>Текущая станция: </strong>
-  <%= @train.current_station.title %>
+  
 </p>
-<p>
-  <strong> Вагоны </strong>
+
+
+<%= form_tag set_current_station_admin_train_path(@train), method: :patch do %>
+<div class="row">
+  <label for="current_station_id" class="col-md-3 control-label">Изменить текущую станцию:</label>
+  <div class="col-md-3">
+    <%= select_tag :current_station_id, options_from_collection_for_select(@train.route.railway_stations, :id, :title), class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <%= submit_tag "Изменить" %>
+  </div>
+</div>
+<% end %>
+
+<div class="clearfix"></div>
+
+<div class="row"> 
+  <div class="col-md-2"><strong>Текущая станция: </strong></div> 
+  <div class="col-md-2"><%= "#{@train.current_station.title}" %></div>   
+</div>
+
+<div class="clearfix"></div>    
+
+<div class="container">
+  <div class="col-md-4">
+    <strong> Вагоны </strong>
+  </div>
+</div>
   <ul>
   <% if @train.carriages.any? %>
      <% @train.order_car.each do |carriage| %>
        <li> <%= link_to "#{carriage.number} - #{carriage.type}", admin_carriage_path(carriage) %></li>
      <%end%>
   <% else %>
-    Вагоны отсутствуют
+
+    <li> Вагоны отсутствуют</li>
   <% end %>
 </ul>
-</p>
+</div>
+
 <p>
   <strong> Маршрут </strong>
   <% if @train.route.present? %>

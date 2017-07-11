@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :trains do
       resources :carriages, shallow: true 
+      patch :set_current_station, on: :member
     end
 
     resources :routes

@@ -5,6 +5,7 @@ class Ticket < ApplicationRecord
   belongs_to :user
 
   after_create :send_notification
+  after_destroy :send_notification_refuse
 
   validates :number, uniqueness: true 
 
@@ -16,6 +17,10 @@ class Ticket < ApplicationRecord
 
   def send_notification
     TicketsMailer.buy_ticket(self.user, self).deliver_now
+  end
+
+  def send_notification_refuse
+    TicketsMailer.refuse_ticket(self.user, self).deliver_now
   end
   
   private

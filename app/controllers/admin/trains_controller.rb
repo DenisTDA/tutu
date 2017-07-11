@@ -1,12 +1,12 @@
 class Admin::TrainsController < Admin::BaseController
-  before_action :set_train, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[show edit update destroy set_current_station]
+
 
   def index
     @trains = Train.all
   end
 
   def show
-    @train.check_current_station
   end
 
   def new
@@ -37,6 +37,11 @@ class Admin::TrainsController < Admin::BaseController
   def destroy
     @train.destroy
     redirect_to admin_trains_url, notice: 'Train was successfully destroyed.'
+  end
+
+  def set_current_station
+    @train.set_current_station(params[:current_station_id])
+    redirect_to admin_train_url, notice: 'Train was successfully changed.'
   end
 
   private
