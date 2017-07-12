@@ -13,8 +13,9 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-sprockets";
+
 
 {
 margin:0;
@@ -100,7 +101,7 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-
+  
   h2 {
     text-align: left;
     font-weight: bold;
