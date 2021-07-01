@@ -1,5 +1,6 @@
 class Admin::TrainsController < Admin::BaseController
-  before_action :set_train, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[show edit update destroy set_current_station]
+
 
   def index
     @trains = Train.all
@@ -17,6 +18,7 @@ class Admin::TrainsController < Admin::BaseController
 
   def create
     @train = Train.new(train_params)
+    @train.current_station = @train.route.railway_stations.first
     if @train.save
       redirect_to [:admin, @train], notice: 'Train was successfully created.'
     else
@@ -35,6 +37,11 @@ class Admin::TrainsController < Admin::BaseController
   def destroy
     @train.destroy
     redirect_to admin_trains_url, notice: 'Train was successfully destroyed.'
+  end
+
+  def set_current_station
+    @train.set_current_station(params[:current_station_id])
+    redirect_to admin_train_url, notice: 'Train was successfully changed.'
   end
 
   private

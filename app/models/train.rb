@@ -22,4 +22,8 @@ class Train < ApplicationRecord
     carriages.where(type: car_type).sum(place_type)
   end
 
+  def set_current_station(current_station)
+    self.update_attribute(:current_station_id, current_station)
+  end
+
 end

@@ -13,12 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
-{
-margin:0;
-}
+
 body {
  height: 100%;
  min-width:800px;
